@@ -1,4 +1,4 @@
-import { Country } from "./CountryGrid";
+import { Country } from "../hooks/useCountry";
 
 interface Props {
   country: Country;
@@ -11,7 +11,7 @@ const CountryCard = ({ country }: Props) => {
   };
 
   return (
-    <div className="bg-white text-blue-dark-900 dark:text-white dark:bg-blue-dark-400 rounded-md overflow-hidden shadow-md font-nunito hover:cursor-pointer w-[280px]">
+    <div className="bg-white text-blue-dark-900 dark:text-white dark:bg-blue-dark-400 rounded-md overflow-hidden shadow-md font-nunito hover:cursor-pointer w-[280px] mx-auto">
       <img
         className="h-[160px] w-full object-cover"
         src={country.flags.png}
