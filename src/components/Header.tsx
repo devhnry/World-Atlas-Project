@@ -7,7 +7,7 @@ interface Props {
 
 const Header = ({ theme, toggleTheme }: Props) => {
   return (
-    <header className="px-[5.5vw] py-8 bg-white dark:bg-blue-dark-400 shadow-base text-blue-dark-900 dark:text-white">
+    <header className="px-[5.5vw] py-8 bg-white dark:bg-blue-dark-400 shadow-base text-blue-dark-900 dark:text-white sticky top-0 z-10">
       <div className="max-w-[1440px] mx-auto flex justify-between">
         <h1 className="text-base xs:text-md md:text-lg lg:text-xl font-extrabold leading-[1.125rem]">
           Where in the world?
