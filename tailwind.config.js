@@ -5,6 +5,19 @@ export default {
     fontFamily: {
       nunito: ["Nunito Sans", "sans-serif"],
     },
+    fontSize: {
+      sm: "0.75rem",
+      base: "0.875rem",
+      md: "1rem",
+      lg: "1.25rem",
+      xl: "1.5rem",
+    },
+    screens: {
+      xs: "425px",
+      sm: "600px",
+      md: "768px",
+      lg: "1024px",
+    },
     extend: {
       colors: {
         blue: {
@@ -16,6 +29,11 @@ export default {
           100: "hsl(0, 0%, 98%)",
           400: "hsl(0, 0%, 52%)",
         },
+      },
+      boxShadow: {
+        sm: "0 2px 4px 0px rgba(0, 0, 0, 0.06)",
+        base: "0 2px 9px 0px rgba(0, 0, 0, 0.05)",
+        md: "0 0px 7px 0px rgba(0, 0, 0, 0.03)",
       },
     },
   },
