@@ -1,10 +1,17 @@
 import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
+import CountryCard from "./CountryCard";
 
-interface Country {
+export interface Country {
   name: {
     common: string;
   };
+  population: number;
+  region: string;
+  capital: string;
+  flags: {
+    png: string
+  }
 }
 
 const CountryGrid = () => {
@@ -25,7 +32,9 @@ const CountryGrid = () => {
   return (
     <div>
       {data.map((data) => (
-        <p key={data.name.common}>{data.name.common}</p>
+        <div>
+          <CountryCard country={data} />
+        </div>
       ))}
     </div>
   );
