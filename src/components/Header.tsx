@@ -1,8 +1,13 @@
 import { FaMoon } from "react-icons/fa";
 
-const Header = () => {
+interface Props {
+  theme: string;
+  toggleTheme: () => void;
+}
+
+const Header = ({ theme, toggleTheme }: Props) => {
   return (
-    <header className="px-4 py-8 bg-white shadow-base text-blue-dark-900">
+    <header className="px-[5.5vw] py-8 bg-white dark:bg-blue-dark-400 shadow-base text-blue-dark-900 dark:text-white">
       <div className="max-w-[1440px] mx-auto flex justify-between">
         <h1 className="text-base xs:text-md md:text-lg lg:text-xl font-extrabold leading-[1.125rem]">
           Where in the world?
@@ -10,9 +15,10 @@ const Header = () => {
         <button
           className="flex gap-2 items-center text-sm xs:text-base sm:text-md font-normal"
           type="button"
+          onClick={toggleTheme}
         >
           <FaMoon />
-          Dark Mode
+          {theme === "light" ? "Dark" : "Light"} Mode
         </button>
       </div>
     </header>
