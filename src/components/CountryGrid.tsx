@@ -30,7 +30,7 @@ const CountryGrid = () => {
   }, []);
 
   return (
-    <div>
+    <div className="max-w-[1440px] mx-auto mt-8 sm:mt-10 md:mt-12">
       {data.map((data) => (
         <div>
           <CountryCard country={data} />
