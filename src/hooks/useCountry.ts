@@ -18,20 +18,23 @@ const useCountry = (searchText: string, requestConfig?: AxiosRequestConfig) => {
   const [countries, setCountries] = useState<Country[]>([]);
   const [error, setError] = useState<string>("");
   const [notFound, setNotFound] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchCountry = async () => {
       const controller = new AbortController();
 
       try {
+        setLoading(true);
         if (searchText.trim() !== "") {
           const response = await apiClient.get(`/name/${searchText}`);
           if (response.data.length === 0) {
             setNotFound(true);
+            setLoading(false);
           } else {
+            setLoading(false);
+            setNotFound(false);
             setCountries(response.data);
-            setNotFound(false)
-            console.log(response.data.length);
           }
         } else {
           const response = await apiClient.get("/all", {
@@ -39,11 +42,14 @@ const useCountry = (searchText: string, requestConfig?: AxiosRequestConfig) => {
             ...requestConfig,
           });
           setCountries(response.data);
+          setLoading(false);
         }
       } catch (error) {
+        setLoading(false);
         if (error instanceof AxiosError) {
           if (error.response && error.response.status === 404) {
-            setNotFound(true)
+            setNotFound(true);
+            setLoading(false);
           } else if (error.response) {
             setError(`Request failed with status ${error.response.status}`);
           } else if (error.request) {
@@ -57,7 +63,7 @@ const useCountry = (searchText: string, requestConfig?: AxiosRequestConfig) => {
     fetchCountry();
   }, [searchText, requestConfig]);
 
-  return { countries, error, notFound };
+  return { countries, error, notFound, loading };
 };
 
 export default useCountry;

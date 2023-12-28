@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
-  darkMode: 'class',
+  darkMode: "class",
   theme: {
     fontFamily: {
       nunito: ["Nunito Sans", "sans-serif"],
@@ -12,16 +12,16 @@ export default {
       md: "1rem",
       lg: "1.25rem",
       xl: "1.5rem",
-      "2xl" : "2.5rem"
+      "2xl": "2.5rem",
     },
     screens: {
       xxs: "375px",
       xs: "425px",
       sm: "600px",
-      "2sm" : "680px", 
+      "2sm": "680px",
       md: "768px",
       lg: "1024px",
-      xl: "1280px"
+      xl: "1280px",
     },
     extend: {
       colors: {
@@ -41,6 +41,11 @@ export default {
         sm: "0 2px 4px 0px rgba(0, 0, 0, 0.06)",
         base: "0 2px 9px 0px rgba(0, 0, 0, 0.05)",
         md: "0 0px 12px 1px rgba(0, 0, 0, 0.15)",
+      },
+    },
+    keyframes: {
+      shimmer: {
+        "100%": { transform: "translateX(100%)" },
       },
     },
   },
