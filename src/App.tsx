@@ -10,6 +10,7 @@ function App() {
   const { theme, toggleTheme } = useTheme();
   const [searchQuery, setSearchQuery] = useState("");
   const [menuState, setMenuState] = useState(false);
+  const [region, setRegion] = useState("");
 
   return (
     <>
@@ -25,9 +26,13 @@ function App() {
               setMenuState(!menuState);
               console.log(menuState);
             }}
+            setRegion={(region: string) => {
+              setRegion(region);
+              setMenuState(!menuState);
+            }}
           />
         </div>
-        <CountryGrid searchText={searchQuery} />
+        <CountryGrid region={region} searchText={searchQuery} />
       </section>
     </>
   );

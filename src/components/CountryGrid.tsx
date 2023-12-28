@@ -5,6 +5,7 @@ import CountryCardSkeleton from "./CountryCardSkeleton";
 
 interface Props {
   searchText: string;
+  region: string;
 }
 
 const CountryGrid = ({ searchText }: Props) => {

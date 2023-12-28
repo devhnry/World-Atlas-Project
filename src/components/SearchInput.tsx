@@ -15,6 +15,7 @@ const SearchInput = ({ onSearch }: Props) => {
       >
         <FaSearch className="text-gray-350 dark:text-white" />
         <input
+          id="searchInput"
           onChange={(e) => onSearch(e.target.value)}
           title="searchInput"
           type="text"

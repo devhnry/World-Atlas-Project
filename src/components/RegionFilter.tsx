@@ -3,12 +3,11 @@ import { FaChevronDown } from "react-icons/fa";
 interface Props {
   menuState: boolean;
   onclick: () => void;
+  setRegion: (region: string) => void;
 }
 
-const RegionFilter = ({ menuState, onclick }: Props) => {
+const RegionFilter = ({ menuState, onclick, setRegion }: Props) => {
   const regions = ["All", "Africa", "America", "Asia", "Europe", "Oceania"];
-
-  // const menuOpen = false
 
   return (
     <div className="text-blue-dark-900 dark:text-white text-sm sm:text-base grid gap-1 relative">
@@ -29,6 +28,8 @@ const RegionFilter = ({ menuState, onclick }: Props) => {
             className="text-left hover:underline"
             type="button"
             key={index}
+            value={reg}
+            onClick={() => setRegion(reg)}
           >
             {reg}
           </button>
