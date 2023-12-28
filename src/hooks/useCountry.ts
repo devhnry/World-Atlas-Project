@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
+import { AxiosRequestConfig, AxiosError } from "axios";
 
 export interface Country {
   name: {
@@ -13,21 +14,50 @@ export interface Country {
   };
 }
 
-const useCountry = () => {
-  const [data, setData] = useState<Country[]>([]);
+const useCountry = (searchText: string, requestConfig?: AxiosRequestConfig) => {
+  const [countries, setCountries] = useState<Country[]>([]);
+  const [error, setError] = useState<string>("");
+  const [notFound, setNotFound] = useState("");
 
   useEffect(() => {
-    const controller = new AbortController();
+    const fetchCountry = async () => {
+      const controller = new AbortController();
 
-    apiClient
-      .get("/all")
-      .then((res) => setData(res.data))
-      .catch((err) => console.log(err.message));
+      try {
+        if (searchText.trim() !== "") {
+          const response = await apiClient.get(`/name/${searchText}`);
+          if (response.data.length === 0) {
+            setNotFound("No such Country, check your spelling");
+          } else {
+            setCountries(response.data);
+            setNotFound("")
+            console.log(response.data.length);
+          }
+        } else {
+          const response = await apiClient.get("/all", {
+            signal: controller.signal,
+            ...requestConfig,
+          });
+          setCountries(response.data);
+        }
+      } catch (error) {
+        if (error instanceof AxiosError) {
+          if (error.response && error.response.status === 404) {
+            setNotFound('Check your spelling')
+          } else if (error.response) {
+            setError(`Request failed with status ${error.response.status}`);
+          } else if (error.request) {
+            setError("No response received");
+          } else {
+            setError(error.message);
+          }
+        }
+      }
+    };
+    fetchCountry();
+  }, [searchText, requestConfig]);
 
-    return () => controller.abort();
-  }, []);
-
-  return { data };
+  return { countries, error, notFound };
 };
 
 export default useCountry;

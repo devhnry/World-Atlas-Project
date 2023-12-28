@@ -1,6 +1,10 @@
 import { FaSearch } from "react-icons/fa";
 
-const SearchInput = () => {
+interface Props {
+  onSearch: (searchText: string) => void;
+}
+
+const SearchInput = ({ onSearch }: Props) => {
   return (
     <div className="max-w-[480px] w-full">
       <form
@@ -11,6 +15,7 @@ const SearchInput = () => {
       >
         <FaSearch className="text-gray-350 dark:text-white" />
         <input
+          onChange={(e) => onSearch(e.target.value)}
           title="searchInput"
           type="text"
           placeholder="Search for a country..."

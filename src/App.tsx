@@ -5,19 +5,21 @@ import "./index.css";
 import useTheme from "./hooks/useTheme";
 import RegionFilter from "./components/RegionFilter";
 import CountryGrid from "./components/CountryGrid";
+import { useState } from "react";
 
 function App() {
   const { theme, toggleTheme } = useTheme();
+  const [searchQuery, setSearchQuery] = useState('')
 
   return (
     <>
       <Header theme={theme} toggleTheme={toggleTheme} />
       <section className="px-[5.5vw] relative">
         <div className="flex gap-10 flex-col lg:flex-row sm:justify-between max-w-[1440px] mx-auto mt-6 xs:mt-8 sm:mt-10 lg:mt-12">
-          <SearchInput />
+          <SearchInput onSearch={(searchQuery) => setSearchQuery(searchQuery)} />
           <RegionFilter />
         </div>
-        <CountryGrid />
+        <CountryGrid searchText={searchQuery} />
       </section>
     </>
   );

@@ -38,7 +38,7 @@ export default {
       boxShadow: {
         sm: "0 2px 4px 0px rgba(0, 0, 0, 0.06)",
         base: "0 2px 9px 0px rgba(0, 0, 0, 0.05)",
-        md: "0 0px 7px 0px rgba(0, 0, 0, 0.03)",
+        md: "0 0px 12px 1px rgba(0, 0, 0, 0.15)",
       },
     },
   },
