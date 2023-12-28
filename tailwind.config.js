@@ -12,8 +12,10 @@ export default {
       md: "1rem",
       lg: "1.25rem",
       xl: "1.5rem",
+      "2xl" : "2.5rem"
     },
     screens: {
+      xxs: "375px",
       xs: "425px",
       sm: "600px",
       "2sm" : "680px", 
