@@ -17,7 +17,7 @@ export interface Country {
 const useCountry = (searchText: string, requestConfig?: AxiosRequestConfig) => {
   const [countries, setCountries] = useState<Country[]>([]);
   const [error, setError] = useState<string>("");
-  const [notFound, setNotFound] = useState("");
+  const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
     const fetchCountry = async () => {
@@ -27,10 +27,10 @@ const useCountry = (searchText: string, requestConfig?: AxiosRequestConfig) => {
         if (searchText.trim() !== "") {
           const response = await apiClient.get(`/name/${searchText}`);
           if (response.data.length === 0) {
-            setNotFound("No such Country, check your spelling");
+            setNotFound(true);
           } else {
             setCountries(response.data);
-            setNotFound("")
+            setNotFound(false)
             console.log(response.data.length);
           }
         } else {
@@ -43,7 +43,7 @@ const useCountry = (searchText: string, requestConfig?: AxiosRequestConfig) => {
       } catch (error) {
         if (error instanceof AxiosError) {
           if (error.response && error.response.status === 404) {
-            setNotFound('Check your spelling')
+            setNotFound(true)
           } else if (error.response) {
             setError(`Request failed with status ${error.response.status}`);
           } else if (error.request) {
