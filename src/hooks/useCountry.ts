@@ -42,6 +42,7 @@ const useCountry = (searchText: string, requestConfig?: AxiosRequestConfig) => {
             ...requestConfig,
           });
           setCountries(response.data);
+          setNotFound(false);
           setLoading(false);
         }
       } catch (error) {
