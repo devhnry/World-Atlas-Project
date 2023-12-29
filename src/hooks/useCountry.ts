@@ -15,13 +15,12 @@ export interface Country {
 }
 
 const useCountry = (
-  searchText: string,
+  // searchText: string,
   region: string,
   requestConfig?: AxiosRequestConfig
 ) => {
   const [countries, setCountries] = useState<Country[]>([]);
   const [error, setError] = useState("");
-  const [notFound, setNotFound] = useState(false);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -32,22 +31,17 @@ const useCountry = (
 
       setLoading(true);
       apiClient
-        .get(endpoint, {
+        .get<Country[]>(endpoint, {
           signal: controller.signal,
           ...requestConfig,
         })
         .then((res) => {
-          const filteredCountries = res.data.filter((country: Country) =>
-            country.name.common.toLowerCase().includes(searchText.toLowerCase())
-          );
-          setCountries(filteredCountries);
           setLoading(false);
-          setNotFound(filteredCountries.length === 0);
+          setCountries(res.data);
         })
         .catch((err) => {
           setLoading(false);
           if (err.response && err.response.status === 404) {
-            setNotFound(true);
             setLoading(false);
           } else if (err.response) {
             setError(`Request failed with status ${err.response.status}`);
@@ -57,11 +51,13 @@ const useCountry = (
             setError(err.message);
           }
         });
+
+      return () => controller.abort();
     };
     fetchCountry();
-  }, [searchText, requestConfig, region]);
+  }, [requestConfig, region]);
 
-  return { countries, error, notFound, loading };
+  return { countries, error, loading };
 };
 
 export default useCountry;
