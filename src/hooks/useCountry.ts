@@ -1,25 +1,10 @@
 import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
 import { AxiosRequestConfig } from "axios";
+import { Country } from "./useCountries";
 
-export interface Country {
-  name: {
-    common: string;
-  };
-  population: number;
-  region: string;
-  capital: string;
-  flags: {
-    png: string;
-  };
-}
-
-const useCountry = (
-  // searchText: string,
-  region: string,
-  requestConfig?: AxiosRequestConfig
-) => {
-  const [countries, setCountries] = useState<Country[]>([]);
+const useCountry = (query: string, requestConfig?: AxiosRequestConfig) => {
+  const [countryData, setCountryData] = useState<Country[]>();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -27,7 +12,7 @@ const useCountry = (
     const fetchCountry = async () => {
       const controller = new AbortController();
 
-      const endpoint = region === "all" ? "/all" : `/region/${region}`;
+      const endpoint = `/name/${query}`;
 
       setLoading(true);
       apiClient
@@ -37,27 +22,20 @@ const useCountry = (
         })
         .then((res) => {
           setLoading(false);
-          setCountries(res.data);
+          setCountryData(res.data);
+          console.log(res.data[0]);
         })
         .catch((err) => {
           setLoading(false);
-          if (err.response && err.response.status === 404) {
-            setLoading(false);
-          } else if (err.response) {
-            setError(`Request failed with status ${err.response.status}`);
-          } else if (err.request) {
-            setError("No response received");
-          } else {
-            setError(err.message);
-          }
+          setError(err.message);
         });
 
       return () => controller.abort();
     };
     fetchCountry();
-  }, [requestConfig, region]);
+  }, [query, requestConfig]);
 
-  return { countries, error, loading };
+  return { countryData, error, loading };
 };
 
 export default useCountry;

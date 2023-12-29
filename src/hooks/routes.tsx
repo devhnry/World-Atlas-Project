@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import ErrorPage from "../routes/ErrorPage";
 import Layout from "../routes/Layout";
 import HomePage from "../routes/HomePage";
+import CountryDetailsPage from "../routes/CountryDetailsPage";
 
 const router = createBrowserRouter([
   {
@@ -12,6 +13,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <HomePage />,
+      },
+      {
+        path: "country/:name",
+        element: <CountryDetailsPage />,
       },
     ],
   },

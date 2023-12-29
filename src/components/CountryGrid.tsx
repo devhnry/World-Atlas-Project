@@ -1,5 +1,5 @@
 import CountryCard from "./CountryCard";
-import useCountry, { Country } from "../hooks/useCountry";
+import useCountries, { Country } from "../hooks/useCountries";
 import Custom404 from "./Custom404";
 import CountryCardSkeleton from "./CountryCardSkeleton";
 
@@ -9,7 +9,7 @@ interface Props {
 }
 
 const CountryGrid = ({ region, searchText }: Props) => {
-  const { countries, error, loading } = useCountry(region);
+  const { countries, error, loading } = useCountries(region);
 
   const filteredCountries = searchText
     ? countries.filter((country: Country) =>
