@@ -1,10 +1,20 @@
 import { createBrowserRouter } from "react-router-dom";
-// import App from "../App";
-// import CountryGrid from "../components/CountryGrid";
+import ErrorPage from "../routes/ErrorPage";
+import Layout from "../routes/Layout";
+import HomePage from "../routes/HomePage";
 
 const router = createBrowserRouter([
-  { path: "", element: "" },
-  { path: "", element: "" },
+  {
+    path: "/",
+    element: <Layout />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        index: true,
+        element: <HomePage />,
+      },
+    ],
+  },
 ]);
 
 export default router;
