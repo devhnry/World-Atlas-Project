@@ -27,13 +27,13 @@ const RegionFilter = ({ menuState, onclick, region, setRegion }: Props) => {
         <FaChevronDown />
       </button>
       <div
-        className={`bg-white dark:bg-blue-dark-400 shadow-base rounded-md absolute w-full top-16 grid gap-2 transition-all duration-300ms ease-in-out ${
-          menuState ? "p-4 opacity-100" : "p-0 h-0 opacity-0 max-h-0"
+        className={`bg-white dark:bg-blue-dark-400 shadow-md rounded-md absolute w-full top-16 grid gap-2 transition-all duration-300ms ease-in-out ${
+          menuState ? "p-4 opacity-100" : "p-0 h-0 opacity-0"
         }`}
       >
         {regions.map((reg) => (
           <button
-            className="text-left hover:underline capitalize"
+            className="text-left hover:font-bold capitalize"
             type="button"
             key={reg.value}
             value={reg.value}

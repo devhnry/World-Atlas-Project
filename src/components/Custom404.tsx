@@ -11,7 +11,7 @@ const Custom404 = () => {
         <p className="text-sm xxs:text-base sm:text-lg">
           Sorry, the country you're looking for doesn't exist.
           <br />
-          Try checking your spelling 🤷🏽‍♂️
+          Try checking your Spelling or the Region 🤷🏽‍♂️
         </p>
       </div>
     </div>
