@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
-import { AxiosRequestConfig, AxiosError } from "axios";
+import { AxiosRequestConfig } from "axios";
 
 export interface Country {
   name: {
@@ -14,9 +14,13 @@ export interface Country {
   };
 }
 
-const useCountry = (searchText: string, requestConfig?: AxiosRequestConfig) => {
+const useCountry = (
+  searchText: string,
+  region: string,
+  requestConfig?: AxiosRequestConfig
+) => {
   const [countries, setCountries] = useState<Country[]>([]);
-  const [error, setError] = useState<string>("");
+  const [error, setError] = useState("");
   const [notFound, setNotFound] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -24,45 +28,38 @@ const useCountry = (searchText: string, requestConfig?: AxiosRequestConfig) => {
     const fetchCountry = async () => {
       const controller = new AbortController();
 
-      try {
-        setLoading(true);
-        if (searchText.trim() !== "") {
-          const response = await apiClient.get(`/name/${searchText}`);
-          if (response.data.length === 0) {
-            setNotFound(true);
-            setLoading(false);
-          } else {
-            setLoading(false);
-            setNotFound(false);
-            setCountries(response.data);
-          }
-        } else {
-          const response = await apiClient.get("/all", {
-            signal: controller.signal,
-            ...requestConfig,
-          });
-          setCountries(response.data);
-          setNotFound(false);
+      const endpoint = region === "all" ? "/all" : `/region/${region}`;
+
+      setLoading(true);
+      apiClient
+        .get(endpoint, {
+          signal: controller.signal,
+          ...requestConfig,
+        })
+        .then((res) => {
+          const filteredCountries = res.data.filter((country: Country) =>
+            country.name.common.toLowerCase().includes(searchText.toLowerCase())
+          );
+          setCountries(filteredCountries);
           setLoading(false);
-        }
-      } catch (error) {
-        setLoading(false);
-        if (error instanceof AxiosError) {
-          if (error.response && error.response.status === 404) {
+          setNotFound(filteredCountries.length === 0);
+        })
+        .catch((err) => {
+          setLoading(false);
+          if (err.response && err.response.status === 404) {
             setNotFound(true);
             setLoading(false);
-          } else if (error.response) {
-            setError(`Request failed with status ${error.response.status}`);
-          } else if (error.request) {
+          } else if (err.response) {
+            setError(`Request failed with status ${err.response.status}`);
+          } else if (err.request) {
             setError("No response received");
           } else {
-            setError(error.message);
+            setError(err.message);
           }
-        }
-      }
+        });
     };
     fetchCountry();
-  }, [searchText, requestConfig]);
+  }, [searchText, requestConfig, region]);
 
   return { countries, error, notFound, loading };
 };

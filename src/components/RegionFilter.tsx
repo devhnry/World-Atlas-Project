@@ -3,19 +3,27 @@ import { FaChevronDown } from "react-icons/fa";
 interface Props {
   menuState: boolean;
   onclick: () => void;
+  region: string;
   setRegion: (region: string) => void;
 }
 
-const RegionFilter = ({ menuState, onclick, setRegion }: Props) => {
-  const regions = ["All", "Africa", "America", "Asia", "Europe", "Oceania"];
+const RegionFilter = ({ menuState, onclick, region, setRegion }: Props) => {
+  const regions = [
+    { value: "all", label: "all" },
+    { value: "africa", label: "africa" },
+    { value: "america", label: "america" },
+    { value: "asia", label: "asia" },
+    { value: "europe", label: "europe" },
+    { value: "oceania", label: "oceania" },
+  ];
 
   return (
     <div className="text-blue-dark-900 dark:text-white text-sm sm:text-base grid gap-1 relative">
       <button
         onClick={onclick}
-        className="flex items-center gap-16 bg-white dark:bg-blue-dark-400 p-4 shadow-base rounded-md"
+        className="flex items-center justify-between bg-white dark:bg-blue-dark-400 p-4 w-[200px] shadow-base rounded-md"
       >
-        <p>Filter by Region</p>
+        <p className="capitalize">{region.toLowerCase() !== "all" ? region : "Filter by Region"}</p>
         <FaChevronDown />
       </button>
       <div
@@ -23,15 +31,15 @@ const RegionFilter = ({ menuState, onclick, setRegion }: Props) => {
           menuState ? "p-4 opacity-100" : "p-0 h-0 opacity-0 max-h-0"
         }`}
       >
-        {regions.map((reg, index) => (
+        {regions.map((reg) => (
           <button
-            className="text-left hover:underline"
+            className="text-left hover:underline capitalize"
             type="button"
-            key={index}
-            value={reg}
-            onClick={() => setRegion(reg)}
+            key={reg.value}
+            value={reg.value}
+            onClick={() => setRegion(reg.label)}
           >
-            {reg}
+            {reg.value}
           </button>
         ))}
       </div>

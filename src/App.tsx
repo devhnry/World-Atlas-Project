@@ -10,7 +10,7 @@ function App() {
   const { theme, toggleTheme } = useTheme();
   const [searchQuery, setSearchQuery] = useState("");
   const [menuState, setMenuState] = useState(false);
-  const [region, setRegion] = useState("");
+  const [region, setRegion] = useState("all");
 
   return (
     <>
@@ -21,10 +21,10 @@ function App() {
             onSearch={(searchQuery) => setSearchQuery(searchQuery)}
           />
           <RegionFilter
+            region={region}
             menuState={menuState}
             onclick={() => {
               setMenuState(!menuState);
-              console.log(menuState);
             }}
             setRegion={(region: string) => {
               setRegion(region);

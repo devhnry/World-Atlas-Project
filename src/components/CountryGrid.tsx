@@ -4,12 +4,15 @@ import Custom404 from "./Custom404";
 import CountryCardSkeleton from "./CountryCardSkeleton";
 
 interface Props {
-  searchText: string;
   region: string;
+  searchText: string;
 }
 
-const CountryGrid = ({ searchText }: Props) => {
-  const { countries, error, notFound, loading } = useCountry(searchText);
+const CountryGrid = ({ region, searchText }: Props) => {
+  const { countries, error, notFound, loading } = useCountry(
+    searchText,
+    region
+  );
   const skeleton = [1, 2, 3, 4, 5, 6, 7, 8];
 
   if (error) return <p>{error}</p>;

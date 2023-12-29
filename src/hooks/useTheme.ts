@@ -23,7 +23,6 @@ const useTheme = () => {
 
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
-    console.log(theme);
   }
 
   return { theme, toggleTheme };
