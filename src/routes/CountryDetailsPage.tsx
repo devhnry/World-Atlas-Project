@@ -10,7 +10,7 @@ const CountryDetailsPage = () => {
 
   if (error) return <p className="text-white">{error}</p>;
   if (loading) return <p className="text-white">Loading...</p>;
-  
+
   if (!Array.isArray(countryData) || countryData.length === 0) {
     return;
   }
@@ -19,16 +19,18 @@ const CountryDetailsPage = () => {
   const { name, flags } = country;
 
   return (
-    <div className=" text-blue-dark-900 dark:text-white font-nunito text-md grid px-[5.5vw] mx-auto max-w-[1440px] py-16">
+    <div className=" text-blue-dark-900 dark:text-gray-200 font-nunito text-md grid px-[5.5vw] mx-auto max-w-[1440px] py-16">
       <img
         className="mb-10 h-[240px] w-full max-w-[380px] rounded-lg"
         src={flags.png}
         alt=""
       />
-      <h2 className="text-xl font-extrabold">{name.common}</h2>
-      <CountryInfoSection country={country} />
-      <CountryDetailsSection country={country} />
-      <CountryBorderSection country={country} />
+      <h2 className="text-xl font-extrabold pb-4">{name.common}</h2>
+      <div className="grid gap-8">
+        <CountryInfoSection country={country} />
+        <CountryDetailsSection country={country} />
+        <CountryBorderSection country={country} />
+      </div>
     </div>
   );
 };

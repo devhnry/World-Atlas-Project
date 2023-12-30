@@ -8,15 +8,25 @@ const CountryDetailsSection = ({ country }: Props) => {
   const { currencies, languages, tld: topLevelDomain } = country;
 
   return (
-    <div className="py-3 flex flex-col gap-4 text-base">
-      <p>Top Level Domain: {topLevelDomain.join(", ")} </p>
+    <div className="flex flex-col gap-[10px] text-base font-medium">
+      <p>
+        Top Level Domain:{" "}
+        <span className="font-light">{topLevelDomain.join(", ")}</span>{" "}
+      </p>
       <p>
         Currencies:{" "}
-        {Object.values(currencies)
-          .map((currency) => currency.name)
-          .join(", ")}{" "}
+        <span className="font-light">
+          {Object.values(currencies)
+            .map((currency) => currency.name)
+            .join(", ")}{" "}
+        </span>
       </p>
-      <p>Languages: {Object.values(languages).join(", ")}</p>
+      <p>
+        Languages:{" "}
+        <span className="font-light">
+          {Object.values(languages).join(", ")}
+        </span>
+      </p>
     </div>
   );
 };
