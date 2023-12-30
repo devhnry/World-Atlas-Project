@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
 import { AxiosRequestConfig } from "axios";
-import { Country } from "./useCountries";
+import { Country } from "../types/Country";
+
 
 const useCountry = (query: string, requestConfig?: AxiosRequestConfig) => {
   const [countryData, setCountryData] = useState<Country[]>();

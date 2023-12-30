@@ -1,5 +1,6 @@
 import CountryCard from "./CountryCard";
-import useCountries, { Country } from "../hooks/useCountries";
+import useCountries from "../hooks/useCountries";
+import { Country } from "../types/Country";
 import Custom404 from "./Custom404";
 import CountryCardSkeleton from "./CountryCardSkeleton";
 

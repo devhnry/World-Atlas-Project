@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Country } from "../hooks/useCountries";
+import { Country } from "../types/Country";
 
 interface Props {
   country: Country;

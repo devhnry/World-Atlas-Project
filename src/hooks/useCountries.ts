@@ -1,23 +1,10 @@
 import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
 import { AxiosRequestConfig } from "axios";
+import { Country } from "../types/Country";
 
-export interface Country {
-  name: {
-    common: string;
-  };
-  population: number;
-  region: string;
-  capital: string;
-  flags: {
-    png: string;
-  };
-}
 
-const useCountries = (
-  region: string,
-  requestConfig?: AxiosRequestConfig
-) => {
+const useCountries = (region: string, requestConfig?: AxiosRequestConfig) => {
   const [countries, setCountries] = useState<Country[]>([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
