@@ -13,7 +13,7 @@ const useCountry = (query: string, requestConfig?: AxiosRequestConfig) => {
     const fetchCountry = async () => {
       const controller = new AbortController();
 
-      const endpoint = `/name/${query}`;
+      const endpoint = `/alpha/${query}`;
 
       setLoading(true);
       apiClient

@@ -1,9 +1,11 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useCountry from "../hooks/useCountry";
+import useCountries from "../hooks/useCountries";
 
 const CountryDetailsPage = () => {
-  const { countryName } = useParams();
-  const { countryData, error, loading } = useCountry(countryName!);
+  const { countryCode } = useParams();
+  const { countryData, error, loading } = useCountry(countryCode!);
+  const { countries } = useCountries("all");
 
   const formatPopulation = (population: number): string => {
     return population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -14,6 +16,12 @@ const CountryDetailsPage = () => {
   if (!Array.isArray(countryData) || countryData.length === 0) {
     return;
   }
+
+  const getCountryName = (ccaCode: string): string | undefined => {
+    const country = countries.find((c) => c.cca3 === ccaCode);
+    return country?.name.common;
+  };
+
   const country = countryData[0];
   const {
     name: { common, nativeName },
@@ -51,9 +59,17 @@ const CountryDetailsPage = () => {
       </div>
       <div>
         <h3 className="text-lg font-extrabold">Border Countries</h3>
-        {borders.map((border) => (
-          <p key={border}>{border}</p>
-        ))}
+        <div className="grid grid-cols-3 gap-2">
+          {borders && borders.length > 0 ? (
+            borders.slice(0, 3).map((border) => (
+              <Link to={`/country/${border}`} key={border}>
+                {getCountryName(border)}
+              </Link>
+            ))
+          ) : (
+            <p>No border countries</p>
+          )}
+        </div>
       </div>
     </div>
   );

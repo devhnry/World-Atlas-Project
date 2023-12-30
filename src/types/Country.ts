@@ -31,4 +31,5 @@ export interface Country {
   tld: string[];
   languages: Languages;
   borders: string[];
+  cca3: string;
 }
