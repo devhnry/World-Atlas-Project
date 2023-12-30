@@ -8,7 +8,9 @@ export default function Layout() {
   return (
     <>
       <Header theme={theme} toggleTheme={toggleTheme} />
-      <Outlet />
+      <div className="px-[5.5vw]">
+        <Outlet />
+      </div>
     </>
   );
 }

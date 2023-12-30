@@ -8,7 +8,7 @@ const CountryDetailsSection = ({ country }: Props) => {
   const { currencies, languages, tld: topLevelDomain } = country;
 
   return (
-    <div className="flex flex-col gap-[10px] text-base font-medium">
+    <div className="flex flex-col gap-[10px] text-base xs:text-md font-medium">
       <p>
         Top Level Domain:{" "}
         <span className="font-light">{topLevelDomain.join(", ")}</span>{" "}

@@ -10,7 +10,7 @@ const HomePage = () => {
 
   return (
     <>
-      <section className="px-[5.5vw] relative h-full">
+      <section className="relative h-full">
         <div className="flex gap-10 flex-col lg:flex-row sm:justify-between max-w-[1440px] mx-auto mt-6 xs:mt-8 sm:mt-10 lg:mt-12">
           <SearchInput
             onSearch={(searchQuery) => setSearchQuery(searchQuery)}

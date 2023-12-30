@@ -18,7 +18,7 @@ const CountryInfoSection = ({ country }: Props) => {
   } = country;
 
   return (
-    <div className="flex flex-col gap-[10px] text-base font-medium">
+    <div className="flex flex-col gap-[10px] text-base xs:text-md font-medium">
       <p>
         Native Name:{" "}
         <span className="font-light">

@@ -20,6 +20,7 @@ export default {
       sm: "600px",
       "2sm": "680px",
       md: "768px",
+      "2md": "976px",
       lg: "1024px",
       xl: "1280px",
     },
