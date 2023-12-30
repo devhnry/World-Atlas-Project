@@ -23,7 +23,7 @@ const CountryInfoSection = ({ country }: Props) => {
         Native Name:{" "}
         <span className="font-light">
           {" "}
-          {nativeName[Object.keys(nativeName)[0]].common}
+          {nativeName?.[Object.keys(nativeName || {})[0]]?.common || "None"}
         </span>
       </p>
       <p>

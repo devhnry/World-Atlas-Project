@@ -24,7 +24,6 @@ const useCountry = (query: string, requestConfig?: AxiosRequestConfig) => {
         .then((res) => {
           setLoading(false);
           setCountryData(res.data);
-          console.log(res.data[0]);
         })
         .catch((err) => {
           setLoading(false);

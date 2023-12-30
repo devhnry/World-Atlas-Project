@@ -11,20 +11,24 @@ const CountryDetailsSection = ({ country }: Props) => {
     <div className="flex flex-col gap-[10px] text-base xs:text-md font-medium">
       <p>
         Top Level Domain:{" "}
-        <span className="font-light">{topLevelDomain.join(", ")}</span>{" "}
+        <span className="font-light">
+          {topLevelDomain?.join(", ") || "No Top Level Domain"}
+        </span>{" "}
       </p>
       <p>
         Currencies:{" "}
         <span className="font-light">
-          {Object.values(currencies)
-            .map((currency) => currency.name)
-            .join(", ")}{" "}
+          {currencies
+            ? Object.values(currencies)
+                .map((currency) => currency.name)
+                .join(", ")
+            : "No Currencies"}
         </span>
       </p>
       <p>
         Languages:{" "}
         <span className="font-light">
-          {Object.values(languages).join(", ")}
+          {languages ? Object?.values(languages)?.join(", ") : "None"}
         </span>
       </p>
     </div>

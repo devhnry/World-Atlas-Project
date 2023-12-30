@@ -4,13 +4,18 @@ import CountryInfoSection from "../components/CountryInfoSection";
 import CountryDetailsSection from "../components/CountryDetailsSection";
 import CountryBorderSection from "../components/CountryBorderSection";
 import { FaArrowLeft } from "react-icons/fa";
+import LinearProgress from "@mui/material/LinearProgress";
 
 const CountryDetailsPage = () => {
   const { countryCode } = useParams();
   const { countryData, error, loading } = useCountry(countryCode!);
 
   if (error) return <p className="text-white">{error}</p>;
-  if (loading) return <p className="text-white">Loading...</p>;
+  if (loading) return (
+    <div className="py-10">
+      <LinearProgress />
+    </div>
+  );
 
   if (!Array.isArray(countryData) || countryData.length === 0) {
     return;

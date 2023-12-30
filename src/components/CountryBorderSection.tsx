@@ -7,7 +7,7 @@ interface Props {
 }
 
 const CountryBorderSection = ({ country }: Props) => {
-  const { name, borders } = country;
+  const {borders } = country;
   const { countries } = useCountries("all");
 
   const getCountryName = (ccaCode: string): string | undefined => {
@@ -29,7 +29,7 @@ const CountryBorderSection = ({ country }: Props) => {
             </Link>
           ))
         ) : (
-          <p>{name.common} has no border countries</p>
+          <p>Has no border countries</p>
         )}
       </div>
     </div>
