@@ -36,7 +36,7 @@ const CountryDetailsPage = () => {
           </span>{" "}
           Back
         </Link>
-        <div className="grid 2md:grid-cols-2 2md:gap-10 lg:gap-5">
+        <div className="grid gap-5 2md:grid-cols-2 2md:gap-10 lg:gap-5">
           <img
             className="mb-10 w-full h-full max-w-[450px] max-h-[400px] rounded-md 2md:size-full 2md:max-w-[560px]"
             src={flags.png}
