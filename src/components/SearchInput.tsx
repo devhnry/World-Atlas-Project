@@ -14,7 +14,11 @@ const SearchInput = ({ onSearch }: Props) => {
         className="flex gap-6 items-center bg-white dark:bg-blue-dark-400 py-4 px-8 shadow-md rounded-md text-blue-dark-900 dark:text-white"
       >
         <FaSearch className="text-gray-400 dark:text-white" />
+        <label htmlFor="searchInput">
+          <span className="sr-only">Search for a country...</span>
+        </label>
         <input
+          aria-label="searching"
           id="searchInput"
           onChange={(e) => onSearch(e.target.value)}
           title="searchInput"

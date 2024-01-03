@@ -19,7 +19,7 @@ const CountryCard = ({ country }: Props) => {
     >
       <img className="h-[160px] w-full object-cover" src={flags.png} alt="" />
       <div className="p-6 pb-12 flex flex-col gap-4 text-base">
-        <h1 className="text-lg font-extrabold">{name.common}</h1>
+        <h2 className="text-lg font-extrabold">{name.common}</h2>
         <ul className="" key={name.common}>
           <li>
             <span className="font-bold">Population: </span>

@@ -23,7 +23,7 @@ const RegionFilter = ({ menuState, onclick, region, setRegion }: Props) => {
         onClick={onclick}
         className="flex items-center justify-between bg-white dark:bg-blue-dark-400 p-4 w-[200px] shadow-base rounded-md"
       >
-        <p className="capitalize">{region.toLowerCase() !== "all" ? region : "Filter by Region"}</p>
+        <span className="capitalize">{region.toLowerCase() !== "all" ? region : "Filter by Region"}</span>
         <FaChevronDown />
       </button>
       <div
