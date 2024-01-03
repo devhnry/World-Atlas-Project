@@ -26,7 +26,7 @@ const CountryDetailsPage = () => {
 
   return (
     <>
-      <div className=" text-blue-dark-900 dark:text-gray-200 font-nunito text-md grid mx-auto max-w-[1440px] py-16">
+      <main className=" text-blue-dark-900 dark:text-gray-200 font-nunito text-md grid mx-auto max-w-[1440px] py-16">
         <Link
           className="text-base w-fit py-2 sm:py-3 px-6 sm:px-8 rounded-md text-center bg-white dark:bg-blue-dark-400 font-light shadow-base flex gap-5 items-center mb-12 sm:mb-20"
           to={"/"}
@@ -55,7 +55,7 @@ const CountryDetailsPage = () => {
             </div>
           </div>
         </div>
-      </div>
+      </main>
     </>
   );
 };
