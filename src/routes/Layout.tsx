@@ -6,11 +6,13 @@ export default function Layout() {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <>
-      <Header theme={theme} toggleTheme={toggleTheme} />
+    <main>
+      <header>
+        <Header theme={theme} toggleTheme={toggleTheme} />
+      </header>
       <div className="px-[5.5vw]">
         <Outlet />
       </div>
-    </>
+    </main>
   );
 }
